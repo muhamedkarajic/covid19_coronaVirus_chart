@@ -15,19 +15,38 @@ let deads;
 
 let today = null;
 let allDays = null;
-let countries = null;
 let lineChart = null;
 let pieChart = null;
 let length = null;
+var countries = null;
+var countryNames = [];
+
+
 
 $.getJSON("https://pomber.github.io/covid19/timeseries.json", function (data) {
     Object.keys(data).forEach(land => {
         $('#landSelect').append(new Option(land, land));
     });
+
+    countryNames = Object.keys(data);
+    countryNamesSet = new Set(countryNames);
     countries = data;
     $('#landSelect').val("Bosnia and Herzegovina");
     displayLand("Bosnia and Herzegovina");
+
+    autocomplete($("#myInput")[0], countryNames);
+
+
+    // .forEach(object => object.addEventListener("click", function () {
+    //     document.getElementById("body").innerHTML = "Hello World";
+    // }));
 });
+
+function checkName(countryName) {
+    console.log(countryName);
+    if(countryNamesSet.has(countryName))
+        displayLand(countryName);
+}
 
 function resetCurrent() {
     days = [];
