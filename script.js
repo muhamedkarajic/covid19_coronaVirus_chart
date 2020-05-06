@@ -75,7 +75,6 @@ function displayLand(land) {
     $('#confirmsLabel').text(today.confirmed);
     $('#recoveredLabel').text(today.recovered);
     $('#deathsLabel').text(today.deaths);
-    $('#pendingLabel').text(current.confirmed - current.recovered - current.deaths);
 
 
     $('#totalConfirmsLabel').text(current.confirmed);
