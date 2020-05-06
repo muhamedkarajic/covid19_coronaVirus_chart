@@ -1,6 +1,9 @@
+// https://stackoverflow.com/questions/3150275/jquery-input-select-all-on-focus
+$("input[type=text]").focus(function () {
+    $(this).select();
+});
+
 // e20191475 I got this code from https://www.w3schools.com/howto/howto_js_autocomplete.asp
-
-
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
