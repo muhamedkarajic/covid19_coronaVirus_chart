@@ -32,7 +32,6 @@ $.getJSON("https://pomber.github.io/covid19/timeseries.json", function (data) {
 });
 
 function checkName(countryName) {
-    console.log(countryName);
     if (countryNamesSet.has(countryName))
         displayLand(countryName);
 }
