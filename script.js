@@ -75,11 +75,13 @@ function displayLand(land) {
     $('#confirmsLabel').text(today.confirmed);
     $('#recoveredLabel').text(today.recovered);
     $('#deathsLabel').text(today.deaths);
+    $('#pendingLabel').text(current.confirmed - current.recovered - current.deaths);
 
 
     $('#totalConfirmsLabel').text(current.confirmed);
     $('#totalRecoveredLabel').text(current.recovered);
     $('#totalDeathsLabel').text(current.deaths);
+    $('#pendingTotalLabel').text(current.confirmed - current.recovered - current.deaths);
     createGraph();
 }
 var lineChartRef = document.getElementById('lineChart').getContext('2d');
@@ -129,12 +131,16 @@ function createGraph() {
         type: 'pie',
         data: {
             datasets: [{
-                data: [allDays.confirmed, allDays.recovered, allDays.deaths]
+                data: [
+                    Math.round((allDays.confirmed-allDays.recovered-allDays.deaths)/allDays.confirmed*100), 
+                    Math.round(allDays.recovered/allDays.confirmed*100), 
+                    Math.round(allDays.deaths/allDays.confirmed*100)
+                ]
                 , backgroundColor: ['rgba(222, 227, 85, 0.5)', 'rgba(20, 20, 220, 0.5)', 'rgba(255, 25, 23, 0.5)'],
             }],
 
             labels: [
-                'Confirmed',
+                'Pending',
                 'Recovered',
                 'Deaths'
             ]
